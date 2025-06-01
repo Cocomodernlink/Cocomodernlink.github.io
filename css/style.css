@@ -12,9 +12,10 @@ body {
     min-height: 100vh;
     display: flex;
     flex-direction: column;
+    padding-top: 80px; /* 为固定导航栏添加顶部内边距 */
 }
 
-/* 顶部导航栏 */
+/* 顶部导航栏 - 修复固定问题 */
 .navbar {
     display: flex;
     justify-content: space-between;
@@ -22,10 +23,21 @@ body {
     padding: 15px 5%;
     background-color: #ffffff;
     box-shadow: 0 2px 15px rgba(0, 0, 0, 0.08);
-    position: sticky;
+    position: fixed; /* 改为固定定位 */
     top: 0;
-    z-index: 100;
+    left: 0;
+    right: 0;
+    z-index: 1000; /* 提高z-index确保在最顶层 */
     width: 100%;
+    transition: all 0.3s ease;
+}
+
+/* 添加滚动时导航栏样式 */
+.navbar.scrolled {
+    box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+    background-color: rgba(255, 255, 255, 0.95);
+    backdrop-filter: blur(10px);
+    padding: 10px 5%;
 }
 
 .logo {
@@ -156,7 +168,7 @@ body {
 
 /* 主内容区域 */
 .hero {
-    padding: 8% 5%;
+    padding: 8% 5% 5%;
     text-align: center;
     background: linear-gradient(135deg, #f5f7ff 0%, #eef0ff 100%);
     position: relative;
@@ -497,14 +509,22 @@ body {
 }
 
 @media (max-width: 768px) {
+    body {
+        padding-top: 60px; /* 移动端导航栏高度调整 */
+    }
+    
     .navbar {
         padding: 12px 5%;
+    }
+    
+    .navbar.scrolled {
+        padding: 8px 5%;
     }
     
     .nav-links {
         display: none;
         position: fixed;
-        top: 80px;
+        top: 60px;
         left: 0;
         right: 0;
         background: #fff;
@@ -569,6 +589,10 @@ body {
 }
 
 @media (max-width: 480px) {
+    body {
+        padding-top: 55px; /* 更小的导航栏高度 */
+    }
+    
     .logo {
         font-size: 22px;
     }
