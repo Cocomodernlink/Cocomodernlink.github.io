@@ -225,7 +225,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 history.unshift(newRecord);
                 
-                localStorage.setItem('uploadHistory', JSON.stringify(history.slice(0, 50)));
+                // 修改点：从50条改为10000条
+                localStorage.setItem('uploadHistory', JSON.stringify(history.slice(0, 10000)));
                 
                 loadHistory();
             }
@@ -240,7 +241,8 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 logs.unshift(newLog);
                 
-                localStorage.setItem('uploadLogs', JSON.stringify(logs.slice(0, 50)));
+                // 修改点：从50条改为10000条
+                localStorage.setItem('uploadLogs', JSON.stringify(logs.slice(0, 10000)));
                 
                 loadLogs();
             }
@@ -426,7 +428,8 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                     });
                     
-                    localStorage.setItem('uploadHistory', JSON.stringify(existingHistory.slice(0, 50)));
+                    // 修改点：从50条改为10000条
+                    localStorage.setItem('uploadHistory', JSON.stringify(existingHistory.slice(0, 10000)));
                     loadHistory();
                     alert(`成功导入 ${importedCount} 条历史记录`);
                 };
@@ -469,7 +472,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         }
                         
                         const existingLogs = JSON.parse(localStorage.getItem('uploadLogs') || '[]');
-                        const newLogs = [...logs, ...existingLogs].slice(0, 50);
+                        
+                        // 修改点：从50条改为10000条
+                        const newLogs = [...logs, ...existingLogs].slice(0, 10000);
                         
                         localStorage.setItem('uploadLogs', JSON.stringify(newLogs));
                         loadLogs();
