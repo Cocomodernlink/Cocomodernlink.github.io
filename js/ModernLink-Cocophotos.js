@@ -225,7 +225,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 
                 history.unshift(newRecord);
                 
-                // 修改点：从50条改为10000条
                 localStorage.setItem('uploadHistory', JSON.stringify(history.slice(0, 10000)));
                 
                 loadHistory();
